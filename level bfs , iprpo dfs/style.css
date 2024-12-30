@@ -1,0 +1,70 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: rgb(186, 245, 245);
+}
+
+h1 {
+    text-align: center;
+    font-weight: 100;
+    position: absolute;
+    top: 130px;     
+    right: 15px;  
+    bottom: 10px;  
+    left: 5px; 
+    color: #680101;
+
+}
+
+canvas {
+    border: 1px solid black;
+    margin-top: 15px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+button:active {
+    background-color: #004080;
+    transform: translateY(1px);
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+#treeCanvas {
+    background-color: rgb(255, 241, 195);
+    border-radius: 7px;
+}
+
+#traversalOutputs {
+    margin-top: 20px;
+    width: 890px;
+    background-color: rgb(247, 236, 240);
+    border-radius: 7px;
+    border: 1px solid black;
+}
+
+.output {
+    margin: 10px;
+}

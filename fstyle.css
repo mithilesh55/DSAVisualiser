@@ -1,0 +1,50 @@
+
+  
+  /* Menu icon styling */
+  #menuIcon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  
+  /* Sidebar styling */
+  #sidebar {
+    position: absolute;
+    top: 0;
+    left: -250px; /* Start hidden */
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 999; /* Ensure it’s above main content */
+  }
+  
+  /* Sidebar links */
+  #sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: 0.3s;
+  }
+  #sidebar a:hover {
+    background-color: #575757;
+  }
+  
+
+  /* Hover zone styling (invisible but full-height) */
+  #hoverZone {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 15px; /* 10px-wide hover detection zone */
+    height: 100vh; /* Full viewport height */
+    z-index: 998; /* Just below the sidebar */
+  }
+  

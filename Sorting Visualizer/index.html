@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorting Algorithms Visualizer</title>
+    <link rel="stylesheet" href="/fstyle.css">
+    <link rel="stylesheet" href="/Sorting Visualizer/style.css">
+</head>
+
+<body>
+
+    <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+    <div id="sidebar" onmouseleave="closeSidebar()">
+        <a href="/index.html">Home</a>
+        <a href="/binary tree 1/index.html">Page 1</a>
+        <a href="/binaryS in 2d Array/index.html">Page 2</a>
+        <a href="/graphs/index.html">Page 3</a>
+        <a href="/hashing types/index.html">Page 4</a>
+        <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+        <a href="/linklist/index.html">Page 6</a>
+        <a href="/n-queens/index.html">Page 7</a>
+        <a href="/s ,q/index.html">Page 8</a>
+        <a href="/searching algo/index.html">Page 9</a>
+        <a href="/traping rain water/index.html">Page 10</a>
+        <a href="/trees bt,bst,avl/index.html">Page 11</a>
+        <a href="/tries/index.html">Page 12</a>
+        <a href="/Sorting Visualizer/index.html">Page 13</a>
+    </div>
+    <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+    <header class="header">
+        <button id="newarr">New_Array !</button>
+        <div class="range">
+            <label>Lenght</label>
+            <input type="range" id="volume" min="3" max="50" value="10">
+        </div>
+        <div class="range">
+            <label>speed</label>
+            <input type="range" id="speed" min="0" max="500" value="300">
+        </div>
+
+        <h1>Sorting Algorithms Visualizer</h1>
+        <button id="sort-btn">Start Sort !!!</button>
+        <button id="sort-all">Start All</button>
+        <!-- <button id="Stop-Restart">Stop</button> -->
+
+    </header>
+
+    <div class="grid">
+        <div class="box">
+            <h2>Bubble Sort</h2>
+            <div id="array-container1" class="array-container"></div>
+        </div>
+        <div class="box">
+            <h2>Selection Sort</h2>
+            <div id="array-container2" class="array-container"></div>
+        </div>
+        <div class="box">
+            <h2>Insertion Sort</h2>
+            <div id="array-container3" class="array-container"></div>
+        </div>
+        <div class="box">
+            <h2>Merge Sort</h2>
+            <div id="array-container4" class="array-container"></div>
+        </div>
+        <div class="box">
+            <h2>Quick Sort</h2>
+            <div id="array-container5" class="array-container"></div>
+        </div>
+        <div class="box">
+            <h2>Heap Sort</h2>
+            <div id="array-container6" class="array-container"></div>
+        </div>
+    </div>
+    <script src="/fscript.js" defer></script>
+
+    <script src="/Sorting Visualizer/script.js"></script>
+</body>
+
+</html>

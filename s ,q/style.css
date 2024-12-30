@@ -1,0 +1,111 @@
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgb(220, 245, 245);
+}
+
+h1,h3 {
+    text-align: center;
+    margin: 10px;
+    font-size: 2.5rem;
+    color: #970202;
+}
+
+.controls {
+    display: flex;
+    flex-direction: row; /* Arrange buttons horizontally */
+    justify-content: center; /* Center the buttons */
+    gap: 10px; /* Space between buttons */
+    margin: 10px;
+}
+
+textarea {
+    width: 150px;
+    height: 2rem; /* Adjust height as needed */
+    padding: 10px;
+    font-size: 1.2rem;
+    resize: none; /* Disable resizing */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 10px; /* Adjust padding for better fit */
+    font-size: 1rem; /* Adjusted font size */
+    cursor: pointer;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    min-width: 120px; /* Minimum width for buttons */
+    text-align: center; /* Center text in button */
+    white-space: pre-wrap; /* Preserve whitespace for line breaks */
+}
+
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around; /* Space evenly between canvas elements */
+    width: 90%; /* Allow some margin on sides */
+    max-width: 800px; /* Max width to keep it within viewport */
+    margin-top: 10px;
+}
+
+.visualizer {
+    width: 45%; /* Each visualizer takes up 45% of the container */
+    text-align: center;
+}
+
+canvas {
+    background-color: #f8d7c4;
+    border: 2px solid #000;
+    border-radius: 10px;
+}
+
+#stackCanvas, #queueCanvas {
+    height: 380px;
+    width: 200px;
+}
+
+#toast {
+    visibility: hidden;
+    min-width: 250px;
+    margin-top: 20px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 17px;
+}
+
+#toast.show {
+    visibility: visible;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+@keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 30px; opacity: 1;}
+}
+
+@keyframes fadeout {
+    from {bottom: 30px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+}

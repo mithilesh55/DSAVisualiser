@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Visualization</title>
+    <link rel="stylesheet" href="/fstyle.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+    <div id="sidebar" onmouseleave="closeSidebar()">
+        <a href="/index.html">Home</a>
+        <a href="/binary tree 1/index.html">Page 1</a>
+        <a href="/binaryS in 2d Array/index.html">Page 2</a>
+        <a href="/graphs/index.html">Page 3</a>
+        <a href="/hashing types/index.html">Page 4</a>
+        <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+        <a href="/linklist/index.html">Page 6</a>
+        <a href="/n-queens/index.html">Page 7</a>
+        <a href="/s ,q/index.html">Page 8</a>
+        <a href="/searching algo/index.html">Page 9</a>
+        <a href="/traping rain water/index.html">Page 10</a>
+        <a href="/trees bt,bst,avl/index.html">Page 11</a>
+        <a href="/tries/index.html">Page 12</a>
+        <a href="/Sorting Visualizer/index.html">Page 13</a>
+    </div>
+    <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+    <h1>Graph Visualization</h1>
+    <div class="container">
+        <div class="left">
+            <button onclick="generateGraph()">Generate Graph</button>
+            <canvas id="graphCanvas" width="400" height="400"></canvas>
+        </div>
+        <div class="right">
+            <div class="adjacency-list">
+                <h2>Adjacency List</h2>
+                <canvas id="adjListCanvas" width="400" height="400"></canvas>
+            </div>
+            <div class="adjacency-matrix">
+                <h2>Adjacency Matrix</h2>
+                <canvas id="adjMatrixCanvas" width="200" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+    <script src="/fscript.js" defer></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

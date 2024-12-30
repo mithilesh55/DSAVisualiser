@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linked List Visualizer</title>
+  <link rel="stylesheet" href="/fstyle.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+  <div id="sidebar" onmouseleave="closeSidebar()">
+    <a href="/index.html">Home</a>
+    <a href="/binary tree 1/index.html">Page 1</a>
+    <a href="/binaryS in 2d Array/index.html">Page 2</a>
+    <a href="/graphs/index.html">Page 3</a>
+    <a href="/hashing types/index.html">Page 4</a>
+    <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+    <a href="/linklist/index.html">Page 6</a>
+    <a href="/n-queens/index.html">Page 7</a>
+    <a href="/s ,q/index.html">Page 8</a>
+    <a href="/searching algo/index.html">Page 9</a>
+    <a href="/traping rain water/index.html">Page 10</a>
+    <a href="/trees bt,bst,avl/index.html">Page 11</a>
+    <a href="/tries/index.html">Page 12</a>
+    <a href="/Sorting Visualizer/index.html">Page 13</a>
+  </div>
+  <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+  <div class="container">
+    <h1>Linked List Visualizer</h1>
+    <div class="leftright">
+      <div class="input-section">
+        <input type="number" id="dataInput" placeholder="Enter data">
+        <button onclick="addNode()">Add Node / Add random data</button>
+      </div>
+      <div class="controls input-section">
+        <input type="number" id="deleteValue" placeholder="Enter value to delete" />
+        <button onclick="deleteNode()">Delete Node</button>
+        <button onclick="clearAll()">Clear All</button>
+      </div>
+    </div>
+
+
+    <h2>Singly Linked List</h2>
+    <div id="singlyLinkedList" class="linked-list"></div>
+
+    <h2>Doubly Linked List</h2>
+    <div id="doublyLinkedList" class="linked-list"></div>
+
+    <h2>Circular Linked List</h2>
+    <div id="circularLinkedList" class="linked-list"></div>
+  </div>
+  <script src="/fscript.js" defer></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

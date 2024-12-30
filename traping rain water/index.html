@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trapping Rain Water Visualization</title>
+    <link rel="stylesheet" href="/fstyle.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            height: 100vh;
+        }
+
+        h1 {
+            margin: 20px 0;
+        }
+
+        #navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            padding: 10px;
+            background-color: #ea6900;
+            color: white;
+            border-top-left-radius: 7px;
+            border-top-right-radius: 7px;
+        }
+
+        #container {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 90%;
+            height: 60vh;
+            overflow: hidden;
+            position: relative;
+            border: 2px solid #ccc;
+            background-color: white;
+            margin-bottom: 20px;
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+        }
+
+        .bar {
+            background-color: red;
+            margin: 0;
+            flex-grow: 1;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            border-right: 2px solid #ccc;
+        }
+
+        .bar:last-child {
+            border-right: none;
+        }
+
+        .water {
+            background-color: blue;
+            position: absolute;
+            bottom: 0;
+            transition: height 0.2s ease;
+            width: 100%;
+        }
+
+        .height-value {
+            position: absolute;
+            bottom: 0px;
+            width: 100%;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+        }
+
+        .iii {
+            display: flex;
+        }
+
+        #waterCount {
+            font-size: 1.2em;
+            padding: 5px 10px;
+            border: 1px solid #fff;
+            border-radius: 5px;
+        }
+
+        #slider {
+            width: 100px;
+        }
+
+        #userInputContainer {
+            margin-top: 20px;
+        }
+
+        #userInput {
+            padding: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+    <div id="sidebar" onmouseleave="closeSidebar()">
+        <a href="/index.html">Home</a>
+        <a href="/binary tree 1/index.html">Page 1</a>
+        <a href="/binaryS in 2d Array/index.html">Page 2</a>
+        <a href="/graphs/index.html">Page 3</a>
+        <a href="/hashing types/index.html">Page 4</a>
+        <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+        <a href="/linklist/index.html">Page 6</a>
+        <a href="/n-queens/index.html">Page 7</a>
+        <a href="/s ,q/index.html">Page 8</a>
+        <a href="/searching algo/index.html">Page 9</a>
+        <a href="/traping rain water/index.html">Page 10</a>
+        <a href="/trees bt,bst,avl/index.html">Page 11</a>
+        <a href="/tries/index.html">Page 12</a>
+        <a href="/Sorting Visualizer/index.html">Page 13</a>
+    </div>
+    <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+    <h1>Trapping Rain Water</h1>
+
+    <div id="navbar">
+        <div class="iii">
+            <label for="slider">Number of Bars / Array Lenght :</label>
+            <input type="range" id="slider" min="1" max="30" value="7">
+        </div>
+
+        <div id="waterCount">Water Blocks: 0</div>
+    </div>
+
+    <div id="container"></div>
+
+    <div id="userInputContainer">
+        <label for="userinput array">Enter your array :</label>
+        <input type="text" id="userInput" placeholder="Enter array seperated with coma (e.g: 3,2,5,1,5)">
+    </div>
+    <script src="/fscript.js" defer></script>
+    <script>
+        // Function to generate a random array
+        function generateRandomArray(size) {
+            const arr = [];
+            for (let i = 0; i < size; i++) {
+                arr.push(Math.floor(Math.random() * 6)); // Random heights between 0 and 5
+            }
+            return arr;
+        }
+
+        // Function to create the bars and display water
+        function displayBars(heights) {
+            const container = document.getElementById('container');
+            container.innerHTML = ''; // Clear existing bars
+
+            // Create the bars
+            heights.forEach((height) => {
+                const bar = document.createElement('div');
+                bar.classList.add('bar');
+                bar.style.height = `${height * 20}px`; // Scale height for better visibility (1 unit = 20px)
+
+                // Create a div to display the height value
+                const heightDiv = document.createElement('div');
+                heightDiv.innerText = height; // Set the height value
+                heightDiv.classList.add('height-value'); // Add a class for styling
+
+                // Append height value div to the bar
+                bar.appendChild(heightDiv);
+                container.appendChild(bar);
+            });
+
+            // Calculate and display trapped water
+            calculateAndDisplayWater(container, heights);
+        }
+
+        // Function to calculate and display trapped water
+        function calculateAndDisplayWater(container, heights) {
+            let n = heights.length;
+            let left = new Array(n);
+            let right = new Array(n);
+            let water = new Array(n).fill(0);
+            let totalWater = 0;
+
+            // Fill left array
+            left[0] = heights[0];
+            for (let i = 1; i < n; i++) {
+                left[i] = Math.max(left[i - 1], heights[i]);
+            }
+
+            // Fill right array
+            right[n - 1] = heights[n - 1];
+            for (let i = n - 2; i >= 0; i--) {
+                right[i] = Math.max(right[i + 1], heights[i]);
+            }
+
+            // Calculate trapped water and display
+            for (let i = 0; i < n; i++) {
+                water[i] = Math.min(left[i], right[i]) - heights[i];
+                if (water[i] > 0) {
+                    totalWater += water[i];
+                    // Create water div
+                    const waterDiv = document.createElement('div');
+                    waterDiv.classList.add('water');
+                    waterDiv.style.height = `${water[i] * 20}px`; // Scale height for visibility
+                    waterDiv.style.bottom = `${heights[i] * 20}px`; // Position above the bar
+                    container.children[i].appendChild(waterDiv); // Append water to the respective bar
+                }
+            }
+
+            // Update water block count
+            document.getElementById('waterCount').innerText = `Water Blocks: ${totalWater}`;
+        }
+
+        // Event listener for slider input
+        document.getElementById('slider').addEventListener('input', (event) => {
+            const size = parseInt(event.target.value);
+            const randomArray = generateRandomArray(size);
+            displayBars(randomArray);
+        });
+
+        // Event listener for user input
+        document.getElementById('userInput').addEventListener('keypress', (event) => {
+            if (event.key === 'Enter') {
+                const input = event.target.value;
+                const heights = input.split(',').map(Number).filter(Boolean); // Convert input to array of numbers
+                displayBars(heights);
+                event.target.value = ''; // Clear the input field after submission
+            }
+        });
+
+        // Initial display
+        displayBars([5, 0, 5, 0, 3, 1, 2]); // Display a default array
+    </script>
+</body>
+
+</html>

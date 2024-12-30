@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tree Visualizer</title>
+    <link rel="stylesheet" href="/fstyle.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+    <div id="sidebar" onmouseleave="closeSidebar()">
+        <a href="/index.html">Home</a>
+        <a href="/binary tree 1/index.html">Page 1</a>
+        <a href="/binaryS in 2d Array/index.html">Page 2</a>
+        <a href="/graphs/index.html">Page 3</a>
+        <a href="/hashing types/index.html">Page 4</a>
+        <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+        <a href="/linklist/index.html">Page 6</a>
+        <a href="/n-queens/index.html">Page 7</a>
+        <a href="/s ,q/index.html">Page 8</a>
+        <a href="/searching algo/index.html">Page 9</a>
+        <a href="/traping rain water/index.html">Page 10</a>
+        <a href="/trees bt,bst,avl/index.html">Page 11</a>
+        <a href="/tries/index.html">Page 12</a>
+        <a href="/Sorting Visualizer/index.html">Page 13</a>
+    </div>
+    <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+    <div class="container">
+        <h1>Tree Visualizer</h1>
+        <div id="arrayDisplay">Random Array: </div>
+        <button id="generateButton" onclick="generateAndDisplayArray()">Generate New Array</button>
+        <button onclick="drawBinaryTree()">Binary Tree</button>
+        <button onclick="drawBST()">Binary Search Tree</button>
+        <button onclick="drawAVLTree()">AVL Tree</button>
+        <span> [ Press Ctrl + ' - ' for better visibility. Set at 90% (Recommend) ]</span>
+    </div>
+    <canvas id="treeCanvas"></canvas>
+    <script src="/fscript.js" defer></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

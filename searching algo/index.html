@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Visualizer</title>
+    <link rel="stylesheet" href="/fstyle.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="initializeArrays()">
+
+    <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+    <div id="sidebar" onmouseleave="closeSidebar()">
+        <a href="/index.html">Home</a>
+        <a href="/binary tree 1/index.html">Page 1</a>
+        <a href="/binaryS in 2d Array/index.html">Page 2</a>
+        <a href="/graphs/index.html">Page 3</a>
+        <a href="/hashing types/index.html">Page 4</a>
+        <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+        <a href="/linklist/index.html">Page 6</a>
+        <a href="/n-queens/index.html">Page 7</a>
+        <a href="/s ,q/index.html">Page 8</a>
+        <a href="/searching algo/index.html">Page 9</a>
+        <a href="/traping rain water/index.html">Page 10</a>
+        <a href="/trees bt,bst,avl/index.html">Page 11</a>
+        <a href="/tries/index.html">Page 12</a>
+        <a href="/Sorting Visualizer/index.html">Page 13</a>
+    </div>
+    <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+    <div class="search-container">
+        <h1>Linear and Binary Search Visualizer</h1>
+
+        <div class="controls">
+            <label for="arrayLength">Array Length: <span id="arrayLengthDisplay">13</span></label>
+            <input type="range" id="arrayLength" min="5" max="20" value="13" onchange="updateArrayLength()">
+        </div>
+
+        <input type="number" id="searchInput" placeholder="Enter a number to search" min="0" max="100">
+        <button onclick="startSearch()">Start Search</button>
+        <button onclick="location.reload()">New Array</button>
+
+        <div class="visual-container">
+            <div class="search-section">
+                <h2>Linear Search</h2>
+                <div id="linearArray" class="array-container"></div>
+                <div id="linearResult" class="result-box">
+                    <div>Index:</div>
+                    <div id="linearIndex">-</div>
+                    <div>Steps:</div>
+                    <div id="linearSteps">-</div>
+                </div>
+            </div>
+
+            <div class="search-section">
+                <h2>Binary Search</h2>
+                <div id="binaryArray" class="array-container"></div>
+                <div id="binaryResult" class="result-box">
+                    <div>Index:</div>
+                    <div id="binaryIndex">-</div>
+                    <div>Steps:</div>
+                    <div id="binarySteps">-</div>
+                </div>
+            </div>
+        </div>
+        <p id="resultMessage" class="result-message"></p>
+    </div>
+    <script src="/fscript.js" defer></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

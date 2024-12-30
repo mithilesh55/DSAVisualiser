@@ -1,0 +1,51 @@
+/* General styling for the page */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  font-family: Arial, sans-serif;
+  background-color: #f0f4f8;
+  overflow: hidden;
+}
+
+.header {
+  height: 10vh;
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 0 20px;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.controls input[type="range"] {
+  width: 120px;
+}
+
+.container {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border: 3px dotted #ff8800;
+  border-radius: 8px;
+  background-color: #cdfaf0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}

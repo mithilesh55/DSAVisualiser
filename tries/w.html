@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trie Force-Directed Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #trieContainer {
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        canvas {
+            border: 1px solid #aaa;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Trie Visualization with Force-Directed Layout</h1>
+    <input type="text" id="wordInput" placeholder="Enter words (comma separated)" />
+    <button id="insertButton">Insert Words</button>
+    <div id="trieContainer">
+        <canvas id="trieCanvas" width="5000" height="5000"></canvas>
+    </div>
+
+    <script>
+        class TrieNode {
+            constructor(value = '') {
+                this.value = value;
+                this.children = {};
+                this.isEndOfWord = false;
+                this.x = 0; // x-coordinate on canvas
+                this.y = 0; // y-coordinate on canvas
+            }
+        }
+
+        class Trie {
+            constructor() {
+                this.root = new TrieNode();
+            }
+
+            insert(word) {
+                let node = this.root;
+                for (let char of word) {
+                    if (!node.children[char]) {
+                        node.children[char] = new TrieNode(char);
+                    }
+                    node = node.children[char];
+                }
+                node.isEndOfWord = true;
+            }
+        }
+
+        const trie = new Trie();
+
+        document.getElementById('insertButton').addEventListener('click', () => {
+            const input = document.getElementById('wordInput').value;
+            const words = input.split(',').map(word => word.trim());
+
+            words.forEach(word => {
+                if (word) {
+                    trie.insert(word);
+                }
+            });
+
+            drawTrie();
+        });
+
+        function drawTrie() {
+            const canvas = document.getElementById('trieCanvas');
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const nodeRadius = 20;
+            const padding = 50;
+
+            // Store nodes and positions
+            const nodes = [];
+            const edges = [];
+
+            function collectNodesAndEdges(node, x, y, parent = null) {
+                node.x = x;
+                node.y = y;
+                nodes.push(node);
+
+                if (parent) {
+                    edges.push({ from: parent, to: node });
+                }
+
+                let offset = 0;
+                for (const childKey in node.children) {
+                    const childNode = node.children[childKey];
+                    collectNodesAndEdges(childNode, x + (offset * 100) - (Object.keys(node.children).length * 50), y + 100, node);
+                    offset++;
+                }
+            }
+
+            collectNodesAndEdges(trie.root, canvas.width / 2, nodeRadius + padding);
+
+            // Apply a force-directed layout to separate nodes
+            function applyForceDirectedLayout(iterations = 100) {
+                const repulsiveForce = 5000;
+                const springLength = 100;
+
+                for (let i = 0; i < iterations; i++) {
+                    nodes.forEach((nodeA, index) => {
+                        nodes.forEach((nodeB, otherIndex) => {
+                            if (index !== otherIndex) {
+                                const dx = nodeA.x - nodeB.x;
+                                const dy = nodeA.y - nodeB.y;
+                                const distance = Math.sqrt(dx * dx + dy * dy);
+                                if (distance < 0.1) return;
+
+                                // Apply repulsive force
+                                const force = repulsiveForce / (distance * distance);
+                                nodeA.x += (dx / distance) * force;
+                                nodeA.y += (dy / distance) * force;
+                            }
+                        });
+                    });
+
+                    edges.forEach(edge => {
+                        const dx = edge.to.x - edge.from.x;
+                        const dy = edge.to.y - edge.from.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        const displacement = (distance - springLength) / 2;
+                        const adjustX = (dx / distance) * displacement;
+                        const adjustY = (dy / distance) * displacement;
+
+                        edge.from.x += adjustX;
+                        edge.from.y += adjustY;
+                        edge.to.x -= adjustX;
+                        edge.to.y -= adjustY;
+                    });
+
+                    // Keep nodes within canvas bounds
+                    nodes.forEach(node => {
+                        node.x = Math.max(nodeRadius, Math.min(canvas.width - nodeRadius, node.x));
+                        node.y = Math.max(nodeRadius, Math.min(canvas.height - nodeRadius, node.y));
+                    });
+                }
+            }
+
+            applyForceDirectedLayout();
+
+            // Draw edges first to appear below nodes
+            edges.forEach(edge => {
+                ctx.beginPath();
+                ctx.moveTo(edge.from.x, edge.from.y);
+                ctx.lineTo(edge.to.x, edge.to.y);
+                ctx.strokeStyle = "#999";
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            });
+
+            // Draw nodes
+            nodes.forEach(node => {
+                ctx.beginPath();
+                ctx.arc(node.x, node.y, nodeRadius, 0, 2 * Math.PI);
+                ctx.fillStyle = node.isEndOfWord ? 'green' : 'lightblue';
+                ctx.fill();
+                ctx.stroke();
+
+                // Draw node value
+                ctx.fillStyle = 'black';
+                ctx.font = '14px Arial';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(node.value, node.x, node.y);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 8.5%;
+}
+.range{
+    display: flex;
+    flex-direction: column;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3,34%); /* Creates 3 equal columns */
+    grid-template-rows: repeat(2, 200dp); /* Creates 2 equal rows */
+    height: 90%; /* Uses the remaining height of the page */
+    gap: 10px; 
+    padding-inline: 5%;
+    width: 87%;
+}
+
+.box {
+    border: 1px solid black;
+    padding: 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box h2{
+    margin-top:0;
+}
+
+.array-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.bar {
+    width: 12.5%;
+    margin: 0 2px;
+    background-color: steelblue;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+button {
+    border: 2px dotted steelblue;
+    border-radius: 10px;
+    color:orange;
+    padding: 0.5% 1%;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 20px; /* Adds space between the title and button */
+    
+}
+button:hover{
+    font-size:20px ;
+    padding: 0.25% 0.5%;
+    color: steelblue;
+    border: 2px dotted orange;
+}
+button:disabled {
+    background-color: gray; 
+    cursor: not-allowed; 
+    color: white; 
+}

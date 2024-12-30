@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Binary Tree Visualization</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="/fstyle.css">
+</head>
+
+<body>
+
+  <div id="menuIcon" onclick="toggleSidebar()">☰</div>
+  <div id="sidebar" onmouseleave="closeSidebar()">
+    <a href="/index.html">Home</a>
+    <a href="/binary tree 1/index.html">Page 1</a>
+    <a href="/binaryS in 2d Array/index.html">Page 2</a>
+    <a href="/graphs/index.html">Page 3</a>
+    <a href="/hashing types/index.html">Page 4</a>
+    <a href="/level bfs , iprpo dfs/index.html">Page 5</a>
+    <a href="/linklist/index.html">Page 6</a>
+    <a href="/n-queens/index.html">Page 7</a>
+    <a href="/s ,q/index.html">Page 8</a>
+    <a href="/searching algo/index.html">Page 9</a>
+    <a href="/traping rain water/index.html">Page 10</a>
+    <a href="/trees bt,bst,avl/index.html">Page 11</a>
+    <a href="/tries/index.html">Page 12</a>
+    <a href="/Sorting Visualizer/index.html">Page 13</a>
+  </div>
+  <div id="hoverZone" onmouseenter="openSidebar()"></div>
+
+
+  <div class="header">
+    <h1>Binary Tree Visualization</h1>
+    <div class="controls">
+      <label for="heightRange">Tree Height: <span id="heightDisplay">5</span></label>
+      <input type="range" id="heightRange" min="1" max="6" value="5">
+    </div>
+  </div>
+
+  <div class="container">
+    <canvas id="treeCanvas"></canvas>
+  </div>
+  <script src="/fscript.js" defer></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
